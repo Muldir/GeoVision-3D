@@ -3,10 +3,20 @@
 <html lang="kk">
 <head>
     <meta charset="UTF-8">
-    <title>GeoVision 3D — Басты бет</title>
-    <meta http-equiv="refresh" content="0; URL='vr_prism_volume_calc.html'" />
+    <title>GeoVision 3D</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p>Егер автоматты түрде ашылмаса, <a href="vr_prism_volume_calc.html">осы сілтемені басыңыз</a>.</p>
+    <h1>GeoVision 3D — Кеңістік Фигуралар</h1>
+    <label for="shape">Фигураны таңдаңыз:</label>
+    <select id="shape">
+        <option value="cone">Конус</option>
+        <option value="cylinder">Цилиндр</option>
+        <option value="pyramid">Пирамида</option>
+    </select>
+    <div id="input-fields"></div>
+    <button onclick="calculate()">Есептеу</button>
+    <div id="output"></div>
+    <script src="script.js"></script>
 </body>
 </html>
