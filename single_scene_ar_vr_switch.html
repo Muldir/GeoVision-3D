@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <title>Цилиндр AR/VR режимі</title>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ar.js@3.3.2/aframe/build/aframe-ar.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(to bottom, #0b163f, #1d2750);
+      color: white;
+    }
+    .panel {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #e1e6ef;
+      padding: 15px;
+      border-radius: 10px;
+      color: black;
+      z-index: 10;
+    }
+    .result {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #e1e6ef;
+      padding: 15px;
+      border-radius: 10px;
+      color: black;
+      z-index: 10;
+      font-size: 15px;
+    }
+    .buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    button {
+      padding: 10px 16px;
+      margin: 5px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2f9df5;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="panel">
+  <label>Радиус:<br><input type="number" id="r" value="2" step="0.1"></label><br><br>
+  <label>Биіктік:<br><input type="number" id="h" value="5" step="0.1"></label><br><br>
+  <button onclick="updateCylinder()">Есептеу</button>
+</div>
+
+<div class="result" id="formulaPanel">
+  <b>Формула:</b> V = π × r² × h<br>
+  <b>Қадам:</b> V = π × 2² × 5<br>
+  <b>Нәтиже:</b> V = 62.83 см³
+</div>
+
+<div class="buttons">
+  <button onclick="switchMode('ar')">AR режим</button>
+  <button onclick="switchMode('vr')">VR режим</button>
+</div>
+
+<a-scene embedded id="scene" vr-mode-ui="enabled: false" arjs="sourceType: webcam;">
+  <a-entity id="ar-marker" marker preset="hiro" visible="false">
+    <a-cylinder id="cylinderAR" color="orange" radius="2" height="5" position="0 2.5 0"></a-cylinder>
+  </a-entity>
+  <a-entity id="cylinderVR" geometry="primitive: cylinder; radius: 2; height: 5"
+            position="0 2.5 -5" material="color: orange" visible="false"></a-entity>
+  <a-entity camera></a-entity>
+</a-scene>
+
+<script>
+function updateCylinder() {
+  const r = parseFloat(document.getElementById('r').value);
+  const h = parseFloat(document.getElementById('h').value);
+  const v = Math.PI * r * r * h;
+
+  document.getElementById('formulaPanel').innerHTML =
+    `<b>Формула:</b> V = π × r² × h<br>` +
+    `<b>Қадам:</b> V = π × ${r}² × ${h}<br>` +
+    `<b>Нәтиже:</b> V = ${v.toFixed(2)} см³`;
+
+  const ar = document.getElementById('cylinderAR');
+  const vr = document.getElementById('cylinderVR');
+
+  ar.setAttribute('geometry', {primitive: 'cylinder', radius: r, height: h});
+  ar.setAttribute('position', `0 ${h/2} 0`);
+
+  vr.setAttribute('geometry', {primitive: 'cylinder', radius: r, height: h});
+  vr.setAttribute('position', `0 ${h/2} -5`);
+}
+
+function switchMode(mode) {
+  const marker = document.getElementById('ar-marker');
+  const vrObj = document.getElementById('cylinderVR');
+  const scene = document.getElementById('scene');
+
+  if (mode === 'ar') {
+    marker.setAttribute('visible', 'true');
+    vrObj.setAttribute('visible', 'false');
+    scene.setAttribute('vr-mode-ui', 'enabled: false');
+  } else {
+    marker.setAttribute('visible', 'false');
+    vrObj.setAttribute('visible', 'true');
+    scene.setAttribute('vr-mode-ui', 'enabled: true');
+  }
+}
+</script>
+
+</body>
+</html>
