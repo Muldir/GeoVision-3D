@@ -99,13 +99,17 @@
 
     function updateModel() {
       const r = parseFloat(document.getElementById('radius').value);
-      const h = parseFloat(document.getElementById('height').value);
-      const scaleY = h / 5;
-      const scaleXZ = r / 3;
-      const scale = `${scaleXZ} ${scaleY} ${scaleXZ}`;
-      document.getElementById('arCylinder').setAttribute('scale', scale);
-      document.getElementById('vrCylinder').setAttribute('scale', scale);
-    }
+  const h = parseFloat(document.getElementById('height').value);
+
+  // Ең үлкен мәнді алып, соған қарай масштабтаймыз
+  const base = Math.max(r, h);
+  const scaleFactor = base / 10;
+
+  const scale = ${scaleFactor} ${scaleFactor} ${scaleFactor};
+
+  document.getElementById('arCylinder').setAttribute('scale', scale);
+  document.getElementById('vrCylinder').setAttribute('scale', scale);
+}
 
     function switchToAR() {
       document.getElementById('arMarker').setAttribute('visible', 'true');
