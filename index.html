@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GeoVision 3D AR/VR – Конус</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/aframe/dist/aframe-mindar-image.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url('ornament-background.png') repeat;
+        background-size: 300px;
+        text-align: center;
+      }
+      header {
+        padding: 1em;
+      }
+      h1 {
+        font-size: 28px;
+        margin-bottom: 0.3em;
+      }
+      .subtitle {
+        font-family: 'Lobster', cursive;
+        font-size: 20px;
+        margin-bottom: 1em;
+      }
+      .language-switcher {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+      .language-switcher button {
+        font-size: 18px;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+      .form-section {
+        margin: 20px;
+      }
+      .form-section input {
+        padding: 8px;
+        width: 120px;
+        font-size: 16px;
+        margin: 0 5px;
+      }
+      .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        background-color: #20639b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      #volumeResult {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      a-scene {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="language-switcher">
+      <button>🇰🇿</button> <button>🇷🇺</button>
+    </div>
+    <header>
+      <h1>GeoVision 3D AR/VR</h1>
+      <div class="subtitle">Кеңістікті меңгер!</div>
+    </header>
+
+    <div class="form-section">
+      <input type="number" id="radius" placeholder="Радиус (см)" />
+      <input type="number" id="height" placeholder="Биіктік (см)" />
+      <button class="button" onclick="calculateVolume()">Есептеу</button>
+      <div id="volumeResult"></div>
+    </div>
+
+    <a-scene mindar-image="imageTargetSrc: target.mind; autoStart: true;" vr-mode-ui="enabled: true" embedded arjs>
+      <a-assets>
+        <a-asset-item id="coneModel" src="cone.glb"></a-asset-item>
+      </a-assets>
+      <a-camera position="0 0 0" look-controls="enabled: true"></a-camera>
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-gltf-model src="#coneModel" position="0 0 0" scale="0.5 0.5 0.5"></a-gltf-model>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      function calculateVolume() {
+        const r = parseFloat(document.getElementById('radius').value);
+        const h = parseFloat(document.getElementById('height').value);
+        if (!isNaN(r) && !isNaN(h)) {
+          const volume = (1 / 3) * 3.14 * r * r * h;
+          document.getElementById('volumeResult').innerText = `Нәтиже: ${volume.toFixed(2)} см³`;
+        }
+      }
+    </script>
+  </body>
+</html>
