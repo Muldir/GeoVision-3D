@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <title>GeoVision 3D AR/VR – Басты бет</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <script src="lang.js"></script>
+  <style>
+    body { margin: 0; font-family: sans-serif; background: #ffffff; text-align: center; }
+    header { background: #004d40; color: white; padding: 20px 0; }
+    h1 { margin: 0; font-size: 32px; }
+    h2.lobster { font-family: 'Lobster', cursive; margin: 5px 0 20px; font-size: 28px; color: #ffcc00; }
+    nav { margin: 30px 0; }
+    .button { display: inline-block; padding: 15px 30px; margin: 10px; background: #00897b; color: white; border: none; font-size: 18px; cursor: pointer; border-radius: 8px; }
+    .notice { background: #eee; padding: 20px; margin-top: 40px; font-size: 14px; }
+    select { margin-top: 10px; padding: 5px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GeoVision 3D AR/VR</h1>
+    <h2 class="lobster" data-i18n="space">Кеңістікті меңгер!</h2>
+    <select id="langSelect" onchange="applyTranslations(this.value)">
+      <option value="kk">Қазақша</option>
+      <option value="ru">Русский</option>
+    </select>
+  </header>
+
+  <nav>
+    <button class="button" onclick="location.href='index.html'" data-i18n="cone">Конус</button>
+    <button class="button" onclick="alert('Кейін қосылады')" data-i18n="cylinder">Цилиндр</button>
+    <button class="button" onclick="alert('Кейін қосылады')" data-i18n="cube">Куб</button>
+    <button class="button" onclick="alert('Кейін қосылады')" data-i18n="sphere">Шар</button>
+  </nav>
+
+  <div class="notice">
+    <p data-i18n="notice1">Назар аударыңыз!</p>
+    <p data-i18n="notice2">Бұл платформа материалдары — Авторлық құқықпен қорғалған</p>
+    <p data-i18n="notice3">✅ Ашық білім беру мақсатында пайдалануға рұқсат етіледі</p>
+    <p data-i18n="notice4">❌ Коммерциялық мақсатта пайдалануға тыйым салынады</p>
+    <p data-i18n="notice5">🔁 Көшіріп қолданғанда автор есімі міндетті түрде көрсетілуі тиіс</p>
+    <p data-i18n="author">© 2025. Платформаны жасаған: Мулдир Досымова</p>
+  </div>
+</body>
+</html>

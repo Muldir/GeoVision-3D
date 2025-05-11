@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <title>GeoVision 3D AR/VR – Конус</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
+  <script src="lang.js"></script>
+  <style>
+    body { margin: 0; font-family: sans-serif; background-color: #f0f0f0; text-align: center; }
+    header { background: #00695c; color: white; padding: 15px 0; }
+    h1 { margin: 0; font-size: 24px; }
+    h2 { margin: 5px 0 20px; }
+    .container { padding: 20px; }
+    .input-box { margin: 10px 0; }
+    .button { padding: 10px 20px; margin: 10px; background: #43a047; color: white; border: none; cursor: pointer; }
+    .nav { margin-top: 30px; }
+    select { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GeoVision 3D AR/VR</h1>
+    <h2 data-i18n="space">Кеңістікті меңгер!</h2>
+    <select id="langSelect" onchange="applyTranslations(this.value)">
+      <option value="kk">Қазақша</option>
+      <option value="ru">Русский</option>
+    </select>
+  </header>
+
+  <div class="container">
+    <div class="input-box">
+      <label data-i18n="radius">Радиус (см):</label>
+      <input type="number" id="radius" value="2" />
+      <label data-i18n="height">Биіктік (см):</label>
+      <input type="number" id="height" value="6" />
+      <button class="button" onclick="calculateVolume()" data-i18n="calculate">Есептеу</button>
+    </div>
+
+    <div id="formula" data-i18n="formula">Формула:</div>
+    <div id="result" data-i18n="result">Нәтиже:</div>
+
+    <a-scene embedded arjs vr-mode-ui="enabled: true">
+      <a-assets>
+        <a-asset-item id="coneModel" src="colored_cone_green.glb"></a-asset-item>
+      </a-assets>
+      <a-marker preset="hiro">
+        <a-entity id="coneEntity" gltf-model="#coneModel" scale="0.05 0.05 0.05" position="0 0 0"></a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <div class="nav">
+      <button onclick="location.href='task.html'" class="button" data-i18n="task">📘 Тапсырма</button>
+      <button onclick="location.href='../../index.html'" class="button" data-i18n="home">🔝 Басты бет</button>
+    </div>
+  </div>
+
+  <script>
+    function calculateVolume() {
+      const r = parseFloat(document.getElementById('radius').value);
+      const h = parseFloat(document.getElementById('height').value);
+      const pi = 3.14;
+      const v = (1/3) * pi * r * r * h;
+      document.getElementById('formula').innerText = `V = 1/3 × π × ${r}² × ${h}`;
+      document.getElementById('result').innerText = `Нәтиже: ${v.toFixed(2)} см³`;
+
+      const scale = (r + h) / 40;
+      document.getElementById("coneEntity").setAttribute("scale", `${scale} ${scale} ${scale}`);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="task">Тапсырма – Конус</title>
+  <script src="lang.js"></script>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; padding: 20px; text-align: center; }
+    img { max-width: 200px; margin: 20px auto; display: block; }
+    .input-area { margin: 20px 0; }
+    .button { padding: 10px 20px; background: #2196F3; color: white; border: none; cursor: pointer; }
+    .nav-buttons { margin-top: 30px; }
+    select { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h1 data-i18n="task">📘 Тапсырма</h1>
+  <select id="langSelect" onchange="applyTranslations(this.value)">
+    <option value="kk">Қазақша</option>
+    <option value="ru">Русский</option>
+  </select>
+
+  <p data-i18n="task_text">Бала балмұздақ ұстап тұр. Вафли конус тәрізді. Радиусы 2 см, биіктігі 6 см. Балмұздақтың көлемін тап.</p>
+  <img src="balmuzdaq.png" alt="Бала балмұздақпен" />
+  
+  <div class="input-area">
+    <label data-i18n="your_answer">Сенің жауабың (см³):</label><br>
+    <input type="number" id="studentAnswer" />
+    <button class="button" onclick="checkAnswer()" data-i18n="check">Тексеру</button>
+    <p id="feedback"></p>
+  </div>
+
+  <button class="button" onclick="showSolution()" data-i18n="see_solution">✅ Шешімді көру</button>
+  <p id="solution" style="margin-top: 15px;"></p>
+
+  <div class="nav-buttons">
+    <button onclick="location.href='index.html'" class="button" data-i18n="back">🔙 Артқа</button>
+    <button onclick="location.href='../../index.html'" class="button" data-i18n="home">🔝 Басты бет</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", initLang);
+
+    function checkAnswer() {
+      const answer = parseFloat(document.getElementById('studentAnswer').value);
+      const correct = (1/3) * 3.14 * 2 * 2 * 6;
+      const diff = Math.abs(answer - correct);
+      const feedback = document.getElementById('feedback');
+      if (diff < 0.1) {
+        feedback.innerText = "✅ Дұрыс жауап!";
+        feedback.style.color = "green";
+      } else {
+        feedback.innerText = "❌ Қате. Қайта байқап көр!";
+        feedback.style.color = "red";
+      }
+    }
+
+    function showSolution() {
+      const v = (1/3) * 3.14 * 2 * 2 * 6;
+      document.getElementById('solution').innerText = `Шешімі: V = 1/3 × 3.14 × 2² × 6 = ${v.toFixed(2)} см³`;
+    }
+  </script>
+</body>
+</html>
