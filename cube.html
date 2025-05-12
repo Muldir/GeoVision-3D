@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Куб тапсырмасы</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        button { padding: 15px 30px; background-color: #28a745; color: white; border: none; font-size: 18px; cursor: pointer; margin-top: 20px; }
+        button:hover { background-color: #218838; }
+        h2 { font-size: 36px; }
+        h3 { font-size: 24px; }
+        .ar-vr-btns { margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <h2>Куб тапсырмасы</h2>
+    <p>Кубтың қабырғасы 4 см болсын. Оның көлемін есептеңіз.</p>
+
+    <div class="ar-vr-btns">
+        <button onclick="startAR()">AR режимінде көру</button>
+        <button onclick="startVR()">VR режимінде көру</button>
+    </div>
+
+    <h3>Куб көлемін есептеңіз (см³):</h3>
+    <input type="number" id="volumeInput" placeholder="Көлемді енгізіңіз">
+    <button onclick="checkVolume()">Тексеру</button>
+
+    <p id="feedback"></p>
+    <button onclick="window.location.href='index.html'">Басты бетке оралу</button>
+
+    <script>
+        function startAR() {
+            alert("AR режимі іске қосылды!");
+        }
+
+        function startVR() {
+            alert("VR режимі іске қосылды!");
+        }
+
+        function checkVolume() {
+            var volume = parseFloat(document.getElementById("volumeInput").value);
+            if (volume === 64) {
+                document.getElementById("feedback").textContent = "Көлем дұрыс!";
+                document.getElementById("feedback").style.color = "green";
+            } else {
+                document.getElementById("feedback").textContent = "Көлем қате!";
+                document.getElementById("feedback").style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>

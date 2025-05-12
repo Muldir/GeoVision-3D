@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoVision 3D AR/VR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #333;
+            font-family: 'Lobster', sans-serif;
+        }
+
+        p {
+            font-size: 24px;
+            color: #555;
+            font-family: 'Lobster', sans-serif;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .slogan {
+            font-size: 32px;
+            font-family: 'Lobster', sans-serif;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .figure-select {
+            margin-top: 30px;
+        }
+
+        .figure-select button {
+            padding: 10px 25px;
+            font-size: 18px;
+            margin: 10px;
+        }
+
+        .ar-vr-btns {
+            margin-top: 40px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <img src="logo.png" alt="GeoVision 3D AR/VR" class="logo">
+
+    <h1>GeoVision 3D AR/VR</h1>
+    <p class="slogan">Кеңістікті меңгер!</p>
+
+    <div class="figure-select">
+        <h3>Фигураны таңдаңыз:</h3>
+        <button onclick="window.location.href='cube.html'">Куб</button>
+        <button onclick="window.location.href='cone.html'">Конус</button>
+    </div>
+
+    <div class="ar-vr-btns">
+        <button onclick="startAR()">AR режимінде көру</button>
+        <button onclick="startVR()">VR режимінде көру</button>
+    </div>
+
+    <script>
+        function startAR() {
+            alert("AR режимі іске қосылды!");
+        }
+
+        function startVR() {
+            alert("VR режимі іске қосылды!");
+        }
+    </script>
+
+</body>
+</html>
