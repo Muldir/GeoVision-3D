@@ -1,5 +1,4 @@
 
-# GeoVision 3D AR/VR
 
 <p align="center">
   <img src="GeoVision_Emblem_DejaVu_Recreated.png" alt="GeoVision Logo" width="240"/>
